@@ -6,7 +6,7 @@
 #
 
 development:
-  ada[ter: postgresql
+  adapter: postgresql
   database: bug_track
   encoding: unicode
   username: postgres
