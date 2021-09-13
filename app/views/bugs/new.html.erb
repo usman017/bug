@@ -1,0 +1,21 @@
+<p> Generate Bug</p>
+
+
+<%= form_for :bug, url: project_bug_index_path, :html => {:multipart => true}  do |f| %>
+
+  <%= f.hidden_field :project %>
+  Title: <%=f.text_field :title %><br>
+  Description: <%=f.text_field :description %>
+  Deadline: <%=f.datetime_select :deadline %>
+  Screen Shot: <%=f.file_field :screen_shot, multiple: true %>
+  <div class="field">
+    <%= f.label :typeOf %><br />
+    <%= f.select(:typeOf, Bug.typeOfs.keys.map {|role| [role.titleize,role]}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status_is %><br />
+    <%= f.select(:status_is, Bug.status_is.keys.map {|role| [role.titleize,role]}) %>
+  </div>
+  <%= f.submit "Add" %>
+<%end %>

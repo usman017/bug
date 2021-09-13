@@ -1,0 +1,8 @@
+<p> All bug</p>
+<% @bugs.each do |bug| %>
+
+  <%= bug.title %>
+  <%= bug.description %>
+  <%=link_to 'Assign Developer', edit_project_bug_path(bug.project,bug.id) %><br>
+
+<%end %>

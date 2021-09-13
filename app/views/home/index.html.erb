@@ -1,9 +1,14 @@
 
 <%if user_signed_in? %>
-  <%=link_to 'Log out', destroy_user_session_path, method: :delete%>
+  <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+  <%= link_to 'Add projects', new_project_path %>
+  <%= link_to 'All projects', user_projects_path %>
+  <%= link_to 'All bugs', allBugs_path %>
+
+
 <%else%>
-  <%=link_to 'Login', new_user_session_path %>
-  <%=link_to 'Sign Up', new_user_registration_path %>
+  <%= link_to 'Login', new_user_session_path %>
+  <%= link_to 'Sign Up', new_user_registration_path %>
 <%end %>
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>

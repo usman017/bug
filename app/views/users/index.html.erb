@@ -1,0 +1,6 @@
+<p> Select Developer</p>
+
+<% @user.each do |users|  %>
+  <%= users.user_type %>
+  <%=link_to 'select', project_bug_path %>
+<% end %>
