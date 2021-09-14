@@ -1,0 +1,6 @@
+<p>Edit project</p>
+
+<%= form_for :project, url: project_path, method: :put  do |f| %>
+  Add task: <%=f.text_field :name %><br>
+  <%= f.submit "edit" %>
+<% end %>

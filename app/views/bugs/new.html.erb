@@ -1,7 +1,7 @@
 <p> Generate Bug</p>
 
 
-<%= form_for :bug, url: project_bug_index_path, :html => {:multipart => true}  do |f| %>
+<%= form_for :bug, url: project_bugs_path, :html => {:multipart => true}  do |f| %>
 
   <%= f.hidden_field :project %>
   Title: <%=f.text_field :title %><br>

@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   enum user_type: %i[Manager Developer QA]
   has_many :projects
+  has_many :bugs
   has_many :project_accesses
   has_many :project, through: :project_accesses
 

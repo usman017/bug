@@ -8,7 +8,7 @@
 <% end %>
 
 
-<%= form_for :project, url: project_index_path  do |f| %>
+<%= form_for :project, url: projects_path  do |f| %>
   Add task: <%=f.text_field :name %><br>
   <%= f.submit "Add" %>
 

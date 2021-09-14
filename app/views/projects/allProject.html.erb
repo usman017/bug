@@ -1,7 +1,18 @@
 <p>All projects</p>
+
+<% flash.each do |type, msg| %>
+  <div>
+    <div class="alert alert-primary" role="alert">
+      <%=msg %>
+    </div>
+  </div>
+<% end %>
+
 <% if @projects.any? %>
   <% @projects.each do |project| %>
     <%=project.name %>
-    <%=link_to 'Add bugs', new_project_bug_path(project.id) %><br>
+    <%=link_to 'Add bugs', new_project_bug_path(project.id) %>
+    <%=link_to 'Delete ', project_path(project.id), method: :delete %>
+    <%=link_to 'Edit ', edit_project_path(project.id)%><br>
     <%end %>
 <% end %>

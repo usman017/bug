@@ -1,8 +1,10 @@
 <p> All bug</p>
 <% @bugs.each do |bug| %>
-
+  <%= bug.project.name%>
   <%= bug.title %>
   <%= bug.description %>
+
+  <%=link_to 'Delete', project_bug_path(bug.project, bug.id) , method: :delete %>
   <%=link_to 'Assign Developer', edit_project_bug_path(bug.project,bug.id) %><br>
 
 <%end %>

@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   resources :projects do
     resources :bugs
   end
-  get 'users/projects', to: 'project#all_project', as: :user_projects
-  get 'users/developers', to: 'user#index', as: :users
-  get 'bugs', to: 'bug#all_bug', as: :allBugs
+  get 'users/projects', to: 'projects#all_project', as: :user_projects
+  get 'users/developers', to: 'users#index', as: :users
+  get 'bugs', to: 'bugs#all_bug', as: :allBugs
+  get 'developer/bugs', to: 'bugs#developer_bugs', as: :developer
+
 
   root to: 'home#index'
 end

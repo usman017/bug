@@ -1,19 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BugTracker</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>SspPrototype</title>
+  <%= stylesheet_link_tag    'application' %>
+  <%= javascript_include_tag 'application' %>
+  <link href="/stylesheets/application.scss">
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-  <%= yield %>
+<header class="nav  nav-inverse">
+  <div class="nav-class">
+    <div class="container">
 
 
-  </body>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+
+      <ul class="nav nav ul">
+
+        <%if user_signed_in? %>
+
+
+          <li><%= link_to 'Add projects',  new_project_path if can? :create, Project %></li>
+          <li><%= link_to 'All projects',  user_projects_path if can? :read, Project %></li>
+          <li><%= link_to 'All bugs',  allBugs_path if can? :create, Bug %></li>
+          <li><%= link_to 'bugs',  developer_path if can? :read, Bug %></li>
+          <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+        <%else%>
+          <li><%= link_to 'Login',  new_user_session_path %></li>
+          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+        <%end %>
+
+      </ul>
+
+
+    </div>
+  </div>
+</header>
+<%= yield %>
+
+</body>
 </html>
