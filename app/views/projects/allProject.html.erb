@@ -13,6 +13,7 @@
     <%=project.name %>
     <%=link_to 'Add bugs', new_project_bug_path(project.id) %>
     <%=link_to 'Delete ', project_path(project.id), method: :delete %>
-    <%=link_to 'Edit ', edit_project_path(project.id)%><br>
+    <%=link_to 'Edit ', edit_project_path(project.id)%>
+    <%=link_to 'Bugs ', project_bugs_path(project.id)%><br>
     <%end %>
 <% end %>

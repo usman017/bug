@@ -114,6 +114,7 @@
     <orderEntry type="library" scope="PROVIDED" name="xpath (v3.2.0, rbenv: 2.5.1) [gem]" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="font-awesome" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />

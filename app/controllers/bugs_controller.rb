@@ -1,7 +1,11 @@
 class BugsController < ApplicationController
 
   before_action :authentication_user
-  def index; end
+  def index
+
+    @project = Project.find(params[:project_id])
+    @bugs = Bug.where(project_id: @project.id)
+  end
 
   def show
     @bug = Bug.find(params[:id])

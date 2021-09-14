@@ -1,44 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>SspPrototype</title>
+  <title>Home</title>
   <%= stylesheet_link_tag    'application' %>
   <%= javascript_include_tag 'application' %>
-  <link href="/stylesheets/application.scss">
+  <link href="/stylesheets/application.scss" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
 
-<header class="nav  nav-inverse">
-  <div class="nav-class">
-    <div class="container">
-
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-
-      <ul class="nav nav ul">
-
-        <%if user_signed_in? %>
-
-
-          <li><%= link_to 'Add projects',  new_project_path if can? :create, Project %></li>
-          <li><%= link_to 'All projects',  user_projects_path if can? :read, Project %></li>
-          <li><%= link_to 'All bugs',  allBugs_path if can? :create, Bug %></li>
-          <li><%= link_to 'bugs',  developer_path if can? :read, Bug %></li>
-          <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
-        <%else%>
-          <li><%= link_to 'Login',  new_user_session_path %></li>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-        <%end %>
-
-      </ul>
-
-
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <p class="navbar-brand" href="#">Bugzilla</p>
     </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><%= link_to 'Home', home_index_path %></li>
+      <%if user_signed_in? %>
+
+
+        <li><%= link_to 'Add projects',  new_project_path if can? :create, Project %></li>
+        <li><%= link_to 'All projects',  user_projects_path if can? :read, Project %></li>
+
+        <li><%= link_to 'bugs',  developer_path if can? :read, Bug %></li>
+        <li> <%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+
+
+      <%else%>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to 'Login',  new_user_session_path %><span class="glyphicon glyphicon-log-in"></span> Sign Up</li>
+          <li><%= link_to 'Sign Up', new_user_registration_path %><span class="glyphicon glyphicon-log-in"></span> Login</li>
+        </ul>
+        <li></li>
+        <li></li>
+      <%end %>
+
+    </ul>
+
   </div>
-</header>
+</nav>
 <%= yield %>
 
 </body>
