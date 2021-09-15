@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Bug Tracker" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Bug Tracker" %>">
+
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+<header>
+      <%= render 'layouts/navigation' %>
+    </header>
+  <%= yield %>
+
+
+  </body>
+</html>

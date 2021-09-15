@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <title>Home</title>
-  <%= stylesheet_link_tag    'application' %>
-  <%= javascript_include_tag 'application' %>
+
   <link href="/stylesheets/application.scss" rel="stylesheet">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,28 +19,19 @@
       <p class="navbar-brand" href="#">Bugzilla</p>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><%= link_to 'Home', home_index_path %></li>
-      <%if user_signed_in? %>
-
-
+      <li><%= link_to 'Home', home_index_path %></li>
+      <% if user_signed_in? %>
         <li><%= link_to 'Add projects',  new_project_path if can? :create, Project %></li>
         <li><%= link_to 'All projects',  user_projects_path if can? :read, Project %></li>
-
         <li><%= link_to 'bugs',  developer_path if can? :read, Bug %></li>
-        <li> <%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
-
-
+        <li> <%= link_to 'Log out', destroy_user_session_path, method: :get %></li>
       <%else%>
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to 'Login',  new_user_session_path %><span class="glyphicon glyphicon-log-in"></span> Sign Up</li>
-          <li><%= link_to 'Sign Up', new_user_registration_path %><span class="glyphicon glyphicon-log-in"></span> Login</li>
+          <li><%= link_to 'Login',  new_user_session_path %></li>
+          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
         </ul>
-        <li></li>
-        <li></li>
       <%end %>
-
     </ul>
-
   </div>
 </nav>
 <%= yield %>
