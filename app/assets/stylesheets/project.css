@@ -1,0 +1,15 @@
+table, th, td {
+    border: 2px solid black;
+
+}
+th{
+    text-align: center;
+}
+
+table{
+    width: 100%;
+}
+#button{
+    margin-left: 995px;
+    margin-bottom: 20px;
+}

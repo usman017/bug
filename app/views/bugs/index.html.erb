@@ -1,8 +1,42 @@
-<p> All bugs</p>
-<% @bugs.each do |bug| %>
 
-  <%= bug.title %>
-  <%= bug.description %>
-  <%=link_to 'Delete', project_bug_path(bug.project, bug.id) , method: :delete %>
-  <%=link_to 'Assign Developer', edit_project_bug_path(bug.project,bug.id) %><br>
+<html lang="en">
+<head>
+  <title> All project</title>
+  <%=stylesheet_link_tag('project') %>
+</head>
+
+<body>
+<h2> All bugs</h2>
+
+<% flash.each do |type, msg| %>
+  <div>
+    <div class="alert alert-primary" role="alert">
+      <%=msg %>
+    </div>
+  </div>
+<% end %>
+<div class="container"  id="container">
+  <button id="button"><%=link_to 'Create New Bug', new_project_bug_path %></button>
+
+    <table>
+      <tr>
+        <th> Bug Title </th>
+        <th> Desription </th>
+        <th> Delete Bug  </th>
+        <th> Assign Developer </th>
+      </tr>
+
+
+<% @bugs.each do |bug| %>
+<tr>
+  <td style="padding-left: 20px"> <%= bug.title %> </td>
+  <td style="text-align: center"> <%= bug.description %> </td>
+  <td style="text-align: center"> <%=link_to 'Delete', project_bug_path(bug.project, bug.id) , method: :delete %> </td>
+  <td style="text-align: center"> <%=link_to 'Assign Developer', edit_project_bug_path(bug.project,bug.id) %><br> </td>
+</tr>
 <%end %>
+    </table>
+
+</div>
+</body>
+</html>
