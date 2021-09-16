@@ -28,6 +28,10 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+//= require bootstrap-table/bootstrap-table
+//= require jquery
+//= require_tree .
+
 
 import "bootstrap"
 import "../stylesheets/application"

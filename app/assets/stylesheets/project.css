@@ -9,7 +9,15 @@ th{
 table{
     width: 100%;
 }
-#button{
-    margin-left: 995px;
-    margin-bottom: 20px;
+#button {
+    background-color: wheat;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px 20px 900px;
 }

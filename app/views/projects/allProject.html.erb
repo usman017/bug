@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <title> All project</title>
-  <%=stylesheet_link_tag('project') %>
+
 </head>
 
 <body>
@@ -16,25 +16,27 @@
   </div>
 <% end %>
 <div class="container"  id="container">
-  <button id="button"><%=link_to 'Create New Project', new_project_path %></button>
+  <button class="accordion-button" style="margin-left: 990px"><%=link_to 'Create New Project', new_project_path %></button>
 <% if @projects.any? %>
-    <table>
+    <table class="table">
      <tr>
-      <th> Project Name </th>
-      <th> Create New Bug </th>
-      <th> Delete Project </th>
-      <th> Edit Project </th>
-      <th> All bug</th>
+       <th> Project Name </th>
+       <th> Assign Developer </th>
+       <th> Create New Bug </th>
+       <th> Delete Project </th>
+       <th> Edit Project </th>
+       <th> All bug</th>
 
      </tr>
 
   <% @projects.each do |project| %>
         <tr>
-          <td style="padding-left: 20px"> <%=project.name %></td>
-          <td style="text-align: center"> <%=link_to 'Add bugs', new_project_bug_path(project.id) %></td>
-          <td style="text-align: center"> <%=link_to 'Delete ', project_path(project.id), method: :delete %> </td>
-          <td style="text-align: center"> <%=link_to 'Edit ', edit_project_path(project.id)%> </td>
-          <td style="text-align: center"> <%=link_to 'Bugs ', project_bugs_path(project.id)%> </td>
+          <td> <%=project.name %></td>
+          <td> <%=project.name %></td>
+          <td> <%=link_to 'Add bugs', new_project_bug_path(project.id) %></td>
+          <td> <%=button_to 'Delete', {:controller => :projects, :action => 'destroy', :id => project.id}, method: :delete %></td>
+          <td> <%=link_to 'Edit ', edit_project_path(project.id)%> </td>
+          <td> <%=link_to 'Bugs ', project_bugs_path(project.id)%> </td>
         </tr>
 
 

@@ -3,12 +3,12 @@ class ProjectsController < ApplicationController
   before_action :authentication_user
 
   def index
-    @project = Project.all
+    @projects = current_user.projects
   end
 
   def new
     @project = Project.new
-
+    @users = User.where(user_type: 'Developer')
   end
 
   def show
@@ -23,13 +23,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     respond_to do |format|
       if @project.destroy
-        format.html{ redirect_to user_projects_path, flash: {success: 'Project has been deleted successfully'}}
+        format.html { redirect_to user_projects_path, flash: {success: 'Project has been deleted successfully'} }
       else
-        format.html{ redirect_to user_projects_path}
+        format.html { redirect_to user_projects_path }
       end
-
     end
-
   end
 
   def update
@@ -45,11 +43,14 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    parameters = project_params.merge({ user_id: current_user.id })
+
+
+    developer_id = params[:project][:developer_id].to_i
+    parameters = project_params.merge({ user_id: current_user.id, developer_id: developer_id })
     @project = Project.new(parameters)
     respond_to do |format|
       if @project.save
-        format.html { redirect_to new_project_path, f: { success: 'Project added successfully ' } }
+        format.html { redirect_to projects_path, flash: { success: 'Project added successfully ' } }
       else
         format.html { render :new }
       end

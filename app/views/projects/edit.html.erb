@@ -1,6 +1,16 @@
-<p>Edit project</p>
+<h2 style="padding-left: 500px">Edit Project</h2>
+<% flash.each do |type, msg| %>
+  <div>
+    <div class="alert alert-primary" role="alert">
+      <%=msg %>
+    </div>
+  </div>
+<% end %>
 
-<%= form_for :project, url: project_path, method: :put  do |f| %>
-  Add task: <%=f.text_field :name %><br>
+<div class="container"  id="container">
+
+<%= form_for :project,:html => {:class=>"form-group"}, url: project_path, method: :put  do |f| %>
+  Add task: <%=f.text_field :name,  class:"form-control"%><br>
   <%= f.submit "edit" %>
 <% end %>
+</div>

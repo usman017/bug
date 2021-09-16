@@ -1,21 +1,65 @@
-<p> Generate Bug</p>
+
+<html lang="en">
+<head>
+  <title> All project</title>
+  <%=stylesheet_link_tag('project') %>
+</head>
+
+<body>
+<h2 style="padding-left: 500px">  Generate Bug</h2>
 
 
-<%= form_for :bug, url: project_bugs_path, :html => {:multipart => true}  do |f| %>
+
+<div class="container"  id="container">
+<%= form_for :bug, url: project_bugs_path, :html => {:multipart => true, :class=>"form-group"}  do |f| %>
+    <% if @bug.errors.any? %>
+      <ul>
+        <% @bug.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
 
   <%= f.hidden_field :project %>
-  Title: <%=f.text_field :title %><br>
-  Description: <%=f.text_field :description %>
-  Deadline: <%=f.datetime_select :deadline %>
-  Screen Shot: <%=f.file_field :screen_shot, multiple: true %>
+  Title: <%=f.text_field :title, class:"form-control" %><br>
+  Description: <%=f.text_field :description, class:"form-control" %><br>
+    <label for="deadline">Deadline</label><input type="datetime-local" id="deadline"
+                                             name="deadline" ><br>
+  Screen Shot: <%=f.file_field :screen_shot, multiple: true, class:"form-control" %>
   <div class="field">
-    <%= f.label :typeOf %><br />
+    <%= f.label :typeOf, class:"form-control" %><br />
     <%= f.select(:typeOf, Bug.typeOfs.keys.map {|role| [role.titleize,role]}) %>
   </div>
 
-  <div class="field">
-    <%= f.label :status_is %><br />
-    <%= f.select(:status_is, Bug.status_is.keys.map {|role| [role.titleize,role]}) %>
-  </div>
-  <%= f.submit "Add" %>
+    <div class="field" data-target="bug">
+      <%= f.label :status_is, class:"form-control" %><br />
+      <%= f.select(:status_is, (Bug.status_is.keys - ['completed']).map {|role| [role.titleize,role]}) %>
+    </div>
+
+    <div class="field" data-target="feature">
+      <%= f.label :status_is, class:"form-control" %><br />
+      <%= f.select(:status_is, (Bug.status_is.keys - ['resolved']).map {|role| [role.titleize,role]}) %>
+    </div>
+    <%=f.submit 'add' %>
+
 <%end %>
+  <script>
+      function toggleSelects() {
+          var value = $('#bug_typeOf')[0].value;
+
+          $('[data-target=bug]').toggle(value === 'bug');
+          $('[data-target=bug] select').attr('disable', value !== 'bug');
+
+          $('[data-target=feature]').toggle(value === 'feature');
+          $('[data-target=feature] select').attr('disable', value !== 'feature');
+      }
+
+      // execute every time the type of task is changed
+      $('#bug_typeOf').on('change', () => toggleSelects());
+
+      // also execute at document load
+      $(toggleSelects);
+  </script>
+</div>
+</body>
+</html>

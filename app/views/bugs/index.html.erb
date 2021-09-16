@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <title> All project</title>
-  <%=stylesheet_link_tag('project') %>
+
 </head>
 
 <body>
@@ -16,9 +16,9 @@
   </div>
 <% end %>
 <div class="container"  id="container">
-  <button id="button"><%=link_to 'Create New Bug', new_project_bug_path %></button>
+  <button class="accordion-button" style="margin-left: 990px"><%=link_to 'Create New Bug', new_project_bug_path %></button>
 
-    <table>
+    <table class="table">
       <tr>
         <th> Bug Title </th>
         <th> Desription </th>
@@ -29,10 +29,10 @@
 
 <% @bugs.each do |bug| %>
 <tr>
-  <td style="padding-left: 20px"> <%= bug.title %> </td>
-  <td style="text-align: center"> <%= bug.description %> </td>
-  <td style="text-align: center"> <%=link_to 'Delete', project_bug_path(bug.project, bug.id) , method: :delete %> </td>
-  <td style="text-align: center"> <%=link_to 'Assign Developer', edit_project_bug_path(bug.project,bug.id) %><br> </td>
+  <td> <%= bug.title %> </td>
+  <td> <%= bug.description %> </td>
+  <td> <%=button_to 'Delete', {:controller => :bugs, :action => 'destroy', :id => bug.id}, method: :delete %> </td>
+  <td> <%=link_to 'Assign Developer', edit_project_bug_path(bug.project,bug.id) %><br> </td>
 </tr>
 <%end %>
     </table>

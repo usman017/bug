@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210909150207) do
+ActiveRecord::Schema.define(version: 20210916090004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,20 +23,20 @@ ActiveRecord::Schema.define(version: 20210909150207) do
     t.integer "status_is"
     t.datetime "deadline"
     t.bigint "project_id"
-    t.bigint "developer_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["developer_id"], name: "index_bugs_on_developer_id"
     t.index ["project_id"], name: "index_bugs_on_project_id"
     t.index ["user_id"], name: "index_bugs_on_user_id"
   end
 
-  create_table "project_accesses", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "project_id"
+  create_table "developers_bugs", force: :cascade do |t|
+    t.bigint "bug_id"
+    t.bigint "developer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bug_id"], name: "index_developers_bugs_on_bug_id"
+    t.index ["developer_id"], name: "index_developers_bugs_on_developer_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 20210909150207) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "projects_developers", force: :cascade do |t|
+    t.bigint "project_id"
+    t.bigint "developer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["developer_id"], name: "index_projects_developers_on_developer_id"
+    t.index ["project_id"], name: "index_projects_developers_on_project_id"
   end
 
   create_table "users", force: :cascade do |t|
