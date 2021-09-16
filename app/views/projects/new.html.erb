@@ -11,9 +11,6 @@
 <%= form_for :project, :html => {:class=>"form-group"}, url: projects_path  do |f| %>
 
   Add task: <%=f.text_field :name, class:"form-control" %><br>
-    <h2>Select Developer</h2>
-    <%= f.select :developer_id, options_for_select(@users.collect  {|user|["#{user.name}","#{user.id}"]}) %><br>
-
 
   <%= f.submit "Add" %>
 

@@ -31,6 +31,7 @@ class ProjectsController < ApplicationController
     end
   end
 
+
   def update
     @project = Project.find(params[:id])
     @project.update(edit_project_params)
@@ -44,6 +45,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    debugger
     developer_id = params[:project][:developer_id].to_i
     parameters = project_params.merge({ user_id: current_user.id, developer_id: developer_id })
     @project = Project.new(parameters)

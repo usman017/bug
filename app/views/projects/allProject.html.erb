@@ -28,7 +28,7 @@
        <th> All bug</th>
 
      </tr>
-
+<% if @projects.any? %>
   <% @projects.each do |project| %>
         <tr>
           <td> <%=project.name %></td>
@@ -41,8 +41,13 @@
 
 
     <%end %>
+
     </table>
+
 <% end %>
+  <% else %>
+    <p>You don't have any Project.</p>
+    <%end %>
 </div>
 </body>
 </html>

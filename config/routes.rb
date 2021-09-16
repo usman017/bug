@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
 
   resources :projects_developer
+  resources :developers_bug
   resources :projects do
     resources :bugs
   end
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   get 'bugs', to: 'bugs#all_bug', as: :allBugs
   get 'developer/bugs', to: 'bugs#developer_bugs', as: :developer
   get 'projects/:id/developers', to: 'users#developer_index', as: :allDeveloper
+  get 'developer/projects', to: 'projects_developer#developer_project', as: :developerProject
 
   root to: 'home#index'
 end

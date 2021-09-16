@@ -39,7 +39,7 @@ class BugsController < ApplicationController
   end
 
   def update
-
+    debugger
     @bug = Bug.find(params[:id])
     developer_id = params["developer_id"].to_i
     @bug.update({ developer_id: developer_id })
