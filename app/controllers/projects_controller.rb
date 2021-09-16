@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+
     @project = Project.find(params[:id])
   end
 
@@ -43,8 +44,6 @@ class ProjectsController < ApplicationController
   end
 
   def create
-
-
     developer_id = params[:project][:developer_id].to_i
     parameters = project_params.merge({ user_id: current_user.id, developer_id: developer_id })
     @project = Project.new(parameters)
@@ -57,6 +56,8 @@ class ProjectsController < ApplicationController
 
     end
   end
+
+
 
   def all_project
     @projects = current_user.projects
@@ -71,6 +72,10 @@ class ProjectsController < ApplicationController
 
   def edit_project_params
     params.require(:project).permit(:name)
+  end
+
+  def projects_developers_params
+    params.require(:pro)
   end
 
   def authentication_user

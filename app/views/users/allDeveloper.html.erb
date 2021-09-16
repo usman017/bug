@@ -1,0 +1,5 @@
+<% @users.each do |user| %>
+  <p><%=  "projects/#{@project_id.id}/developers/#{user.id}"  %></p>
+  <h3><%=user.name %></h3>
+  <%=link_to 'Assign', "/projects/#{@project_id.id}/developers/#{user.id}", method: :post%><br>
+<% end %>

@@ -1,0 +1,6 @@
+<% @users.each do |user| %>
+  <h3><%=user.name %></h3>
+
+  <%=button_to 'Assign' , projects_developer_index_path({project_id: @project_id.id, developer_id: user.id}),
+             method: :post %><br>
+<% end %>
