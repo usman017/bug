@@ -9,9 +9,8 @@
 <h2 style="padding-left: 500px">  Generate Bug</h2>
 
 
-
 <div class="container"  id="container">
-  <%= form_for :bug, :html => {:multipart => true, :class=>"form-group"} , url: project_bug_path, method: :put  do |f| %>
+  <%= form_for :projects_developer, :html => {:multipart => true, :class=>"form-group"} , url: update_bug_path({bug_id:@bug.id, project_id:@project.id}), method: :put  do |f| %>
     <% if @bug.errors.any? %>
       <ul>
         <% @bug.errors.full_messages.each do |message| %>
@@ -29,26 +28,17 @@
 
 
     <%= f.hidden_field :project %>
-    Title: <%=f.text_field :title, class:"form-control" %><br>
-    Description: <%=f.text_field :description, class:"form-control" %><br>
-    <label for="deadline">Deadline</label><input type="datetime-local" id="deadline"
-                                                 name="deadline" ><br>
+
     Screen Shot: <%=f.file_field :image, class:"form-control" %>
-    <div class="field">
-      <%= f.label :typeOf, class:"form-control" %><br />
-      <%= f.select(:typeOf, Bug.typeOfs.keys.map {|role| [role.titleize,role]}) %>
-    </div>
 
     <div class="field" data-target="bug">
       <%= f.label :status_is, class:"form-control" %><br />
       <%= f.select(:status_is, (Bug.status_is.keys - ['completed']).map {|role| [role.titleize,role]}) %>
     </div>
 
-    <div class="field" data-target="feature">
-      <%= f.label :status_is, class:"form-control" %><br />
-      <%= f.select(:status_is, (Bug.status_is.keys - ['resolved']).map {|role| [role.titleize,role]}) %>
-    </div>
-    <%=f.submit 'edit' %>
+
+
+    <%=f.submit 'edit'%>
 
   <%end %>
   <script>

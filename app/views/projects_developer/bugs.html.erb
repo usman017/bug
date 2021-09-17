@@ -1,0 +1,50 @@
+
+<html lang="en">
+<head>
+  <title> All project</title>
+
+</head>
+
+<body>
+<h2> All bugs</h2>
+
+<% flash.each do |type, msg| %>
+  <div>
+    <div class="alert alert-primary" role="alert">
+      <%=msg %>
+    </div>
+  </div>
+<% end %>
+<% flash.each do |type, msg| %>
+  <div>
+    <div class="alert alert-primary" role="alert">
+      <%=msg %>
+    </div>
+  </div>
+<% end %>
+<div class="container"  id="container">
+
+
+  <table class="table">
+    <tr>
+      <th> Bug Title </th>
+      <th> Bug Detail </th>
+      <th> Edit Bug</th>
+
+    </tr>
+
+
+    <% @bugs.each do |bug| %>
+      <tr>
+        <td> <%= bug.title %> </td>
+        <td> <%=link_to 'Detail',  bugs_path(bug.project,bug.id) %> </td>
+
+        <td> <%=link_to 'Edit', editBug_path({project_id:bug.project, bug_id:bug.id}) %></td>
+
+      </tr>
+    <%end %>
+  </table>
+
+</div>
+</body>
+</html>

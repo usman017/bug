@@ -8,13 +8,13 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation,  :user_type)}
-
   end
+
   def after_sign_in_path_for(resource)
 
     case current_user.user_type
     when 'Developer'
-      developer_path
+      developerProject_path
     when 'Manager'
       user_projects_path
     else

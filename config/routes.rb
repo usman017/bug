@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   get 'projects/:id/bugs/:id', to: 'bugs#details', as: :bugs
   get 'pro/bug', to: 'bugs#edit_developer', as: :edit_bug
   put 'update/bug', to: 'bugs#update_developer', as: :updateBug
+  get 'developers/bug', to: 'projects_developer#show_bugs', as: :showBug
+  get 'developers/bug/edit', to: 'projects_developer#edit_bug', as: :editBug
+  put 'developers/update/bug', to: 'projects_developer#update_bug', as: :update_bug
+
 
   root to: 'home#index'
 end

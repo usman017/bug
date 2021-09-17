@@ -45,13 +45,13 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    debugger
-    developer_id = params[:project][:developer_id].to_i
-    parameters = project_params.merge({ user_id: current_user.id, developer_id: developer_id })
+
+
+    parameters = project_params.merge({ user_id: current_user.id})
     @project = Project.new(parameters)
     respond_to do |format|
       if @project.save
-        format.html { redirect_to projects_path, flash: { success: 'Project added successfully ' } }
+        format.html { redirect_to user_projects_path, flash: { success: 'Project added successfully ' } }
       else
         format.html { render :new }
       end

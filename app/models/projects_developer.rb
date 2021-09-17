@@ -1,4 +1,5 @@
+# frozen_string_literal: true
 class ProjectsDeveloper < ApplicationRecord
-  has_many :projects
-  has_many :users
+  belongs_to :project
+  belongs_to :user, foreign_key: :developer_id
 end
