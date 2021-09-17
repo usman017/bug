@@ -1,0 +1,15 @@
+
+function toggleSelects() {
+
+    var value = $('#bug_typeOf')[<%=@bug.status_is %>].value;
+
+    $('[data-target=bug]').toggle(value === 'bug');
+    $('[data-target=bug] select').attr('disable', value !== 'bug');
+
+}
+
+    // execute every time the type of task is changed
+    $('#bug_typeOf').on('change', () => toggleSelects());
+
+    // also execute at document load
+    $(toggleSelects);

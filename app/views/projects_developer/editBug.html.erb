@@ -42,7 +42,7 @@
   <%end %>
   <script>
       function toggleSelects() {
-          var value = $('#bug_typeOf')[0].value;
+          var value = $('#bug_typeOf')[<%=@bug.status_is %>].value;
 
           $('[data-target=bug]').toggle(value === 'bug');
           $('[data-target=bug] select').attr('disable', value !== 'bug');
