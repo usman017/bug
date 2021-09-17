@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     when 'Developer'
       developerProject_path
     when 'Manager'
-      user_projects_path
+      projects_path
     else
       # type code here
     end

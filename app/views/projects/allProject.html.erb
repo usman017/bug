@@ -17,37 +17,19 @@
 <% end %>
 <div class="container"  id="container">
   <button class="accordion-button" style="margin-left: 990px"><%=link_to 'Create New Project', new_project_path %></button>
-<% if @projects.any? %>
+
     <table class="table">
      <tr>
-       <th> Project Name </th>
-       <th> Assign Developer </th>
-       <th> Create New Bug </th>
-       <th> Delete Project </th>
-       <th> Edit Project </th>
-       <th> All bug</th>
-
+       <th> Developer name </th>
      </tr>
-<% if @projects.any? %>
-  <% @projects.each do |project| %>
+  <% @users.each do |user| %>
         <tr>
-          <td> <%=project.name %></td>
-          <td> <%=link_to 'Assign project', projects_developer_index_path({project_id: project.id}) %></td>
-          <td> <%=link_to 'Add bugs', new_project_bug_path(project.id) %></td>
-          <td> <%=button_to 'Delete', {:controller => :projects, :action => 'destroy', :id => project.id}, method: :delete %></td>
-          <td> <%=link_to 'Edit ', edit_project_path(project.id)%> </td>
-          <td> <%=link_to 'Bugs ', project_bugs_path(project.id)%> </td>
+          <td> <%=user.name %></td>
+
         </tr>
-
-
     <%end %>
+   </table>
 
-    </table>
-
-<% end %>
-  <% else %>
-    <p>You don't have any Project.</p>
-    <%end %>
 </div>
 </body>
 </html>

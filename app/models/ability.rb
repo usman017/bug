@@ -11,9 +11,10 @@ class Ability
     when 'Manager'
       can :manage, Project
       can :manage, Bug
+      cannot :manage, ProjectsDeveloper
     when 'Developer'
       can :read, Bug
-
+      can :manage, ProjectsDeveloper
     else
       # type code here
     end

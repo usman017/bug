@@ -10,7 +10,7 @@
 <div class="container"  id="container">
 
 <%= form_for :project,:html => {:class=>"form-group"}, url: project_path, method: :put  do |f| %>
-  Add task: <%=f.text_field :name,  class:"form-control"%><br>
+    <%=render(:partial => "form", :locals => {:f => f}) %>
   <%= f.submit "edit" %>
 <% end %>
 </div>

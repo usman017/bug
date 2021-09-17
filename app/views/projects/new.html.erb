@@ -9,10 +9,8 @@
 
 <div class="container"  id="container">
 <%= form_for :project, :html => {:class=>"form-group"}, url: projects_path  do |f| %>
-
-  Add Project: <%=f.text_field :name, class:"form-control" %><br>
-
-  <%= f.submit "Add" %>
+    <%=render(:partial => "form", :locals => {:f => f}) %>
+    <%= f.submit "Add" %>
 
 <% end %>
   </div>

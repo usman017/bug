@@ -1,17 +1,14 @@
 class ProjectsDeveloperController < ApplicationController
 
   def developer_project
-
     @projects = ProjectsDeveloper.where(developer_id: current_user)
     render template: 'projects/developerProject'
   end
 
   def show_bugs
-
     @project = Project.find(params[:project_id])
     @bugs = Bug.where(project_id: @project.id)
     render template: 'projects_developer/bugs'
-
   end
 
   def edit_bug
@@ -23,7 +20,6 @@ class ProjectsDeveloperController < ApplicationController
   end
 
   def update_bug
-
     project_id = params['project_id'].to_i
     bug_id = params['bug_id'].to_i
     @bug = Bug.find(bug_id)
@@ -39,10 +35,9 @@ class ProjectsDeveloperController < ApplicationController
   end
 
   def index
-
-    @users = User.where(user_type: 'Developer')
-    project_id = params['project_id'].to_i
-    @project_id = Project.find(project_id)
+    @project = Project.find(params['project_id'].to_i)
+    @project_developer = @project.projects_developers.pluck(:developer_id)
+    @users = User.where(user_type: 'Developer').where.not(id: @project_developer)
   end
 
   def new
@@ -53,10 +48,10 @@ class ProjectsDeveloperController < ApplicationController
   def create
     developer_id = params['developer_id'].to_i
     project_id = params['project_id'].to_i
-    @project = ProjectsDeveloper.new({ project_id: project_id, developer_id: developer_id})
+    @project = ProjectsDeveloper.new({ project_id: project_id, developer_id: developer_id })
     respond_to do |format|
       if @project.save
-        format.html {redirect_to user_projects_path}
+        format.html {redirect_to projects_path, flash:{ success: 'Project assign successfully' }}
       else
         format.html {redirect_to allBugs_path}
       end

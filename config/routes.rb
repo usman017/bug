@@ -9,7 +9,6 @@ Rails.application.routes.draw do
 
 
   resources :projects_developer
-  resources :developers_bug
   resources :projects do
     resources :bugs
   end
