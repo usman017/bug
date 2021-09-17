@@ -1,0 +1,9 @@
+<p> Select Developer</p>
+
+
+<% @users.each do |user|  %>
+  <%=user.name %>
+  <%= user.user_type %>
+  <%= user.user_type %>
+  <%=button_to 'Select', updateBug_path(params: {developer_id: user.id, bug_id: @bug.id}), method: :put %><br>
+<%end %>

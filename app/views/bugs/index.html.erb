@@ -15,14 +15,22 @@
     </div>
   </div>
 <% end %>
+<% flash.each do |type, msg| %>
+  <div>
+    <div class="alert alert-primary" role="alert">
+      <%=msg %>
+    </div>
+  </div>
+<% end %>
 <div class="container"  id="container">
   <button class="accordion-button" style="margin-left: 990px"><%=link_to 'Create New Bug', new_project_bug_path %></button>
 
     <table class="table">
       <tr>
         <th> Bug Title </th>
-        <th> Desription </th>
+        <th> Bug Detail </th>
         <th> Delete Bug  </th>
+        <th> Edit Bug</th>
         <th> Assign Developer </th>
       </tr>
 
@@ -30,9 +38,11 @@
 <% @bugs.each do |bug| %>
 <tr>
   <td> <%= bug.title %> </td>
-  <td> <%= bug.description %> </td>
+  <td> <%=link_to 'Detail',  bugs_path(bug.project,bug.id) %> </td>
+
   <td> <%=button_to 'Delete', {:controller => :bugs, :action => 'destroy', :id => bug.id}, method: :delete %> </td>
-  <td> <%=link_to 'Assign Developer', edit_project_bug_path(bug.project,bug.id) %><br> </td>
+  <td> <%=link_to 'Edit', edit_project_bug_path(bug.project, bug.id) %></td>
+  <td> <%=link_to 'Assign Developer', edit_bug_path({project_id:bug.project,  bug_id: bug.id}) %><br> </td>
 </tr>
 <%end %>
     </table>

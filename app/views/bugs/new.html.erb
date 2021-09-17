@@ -25,7 +25,7 @@
   Description: <%=f.text_field :description, class:"form-control" %><br>
     <label for="deadline">Deadline</label><input type="datetime-local" id="deadline"
                                              name="deadline" ><br>
-  Screen Shot: <%=f.file_field :screen_shot, multiple: true, class:"form-control" %>
+  SScreen Shot: <%=f.file_field :image, class:"form-control" %>
   <div class="field">
     <%= f.label :typeOf, class:"form-control" %><br />
     <%= f.select(:typeOf, Bug.typeOfs.keys.map {|role| [role.titleize,role]}) %>

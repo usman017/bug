@@ -1,10 +1,8 @@
 class ProjectsDeveloperController < ApplicationController
 
   def developer_project
-
     @projects = ProjectsDeveloper.where(developer_id: current_user)
     render template: 'projects/developerProject'
-
   end
 
 

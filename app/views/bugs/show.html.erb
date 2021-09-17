@@ -1,4 +1,8 @@
-<p></p>
+<p>Bug detail</p>
 
-<%=@bug.inspect %>
 
+<%= @bugs.title %>
+<%= @bugs.description %>
+<%= image_tag @bugs.image_url.to_s %>
+<%= @bugs.typeOf %>
+<%= @bugs.status_is %>

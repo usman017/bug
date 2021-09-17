@@ -8,8 +8,7 @@ class BugsController < ApplicationController
   end
 
   def show
-
-    @bug = Bug.find(params[:id])
+    @bugs = Bug.find(params[:id])
   end
 
   def destroy
@@ -34,15 +33,18 @@ class BugsController < ApplicationController
 
   def edit
     @bug = Bug.find(params[:id])
-    @users = User.where(user_type: 'Developer')
-
   end
 
   def update
-    debugger
     @bug = Bug.find(params[:id])
-    developer_id = params["developer_id"].to_i
-    @bug.update({ developer_id: developer_id })
+    @bug.update(edit_project_params)
+    respond_to do |format|
+      if @bug.save
+        format.html { redirect_to user_projects_path, flash: { success: 'Bug updated successfully' } }
+      else
+        format.html { redirect_to edit_project_path }
+      end
+    end
   end
 
   def create
@@ -58,10 +60,33 @@ class BugsController < ApplicationController
     end
   end
 
+  def edit_developer
+
+    bug_id = params['bug_id'].to_i
+    @bug = Bug.find(bug_id)
+    project_id = params['project_id'].to_i
+    @project = Project.find(project_id)
+    @users = User.where(user_type: 'Developer')
+    render template: 'bugs/developerAssign'
+
+  end
+
+  def update_developer
+
+    bug_id = params['bug_id'].to_i
+    @bug = Bug.find(bug_id)
+    developer_id = params['developer_id'].to_i
+    @bug.update({ developer_id: developer_id })
+  end
+
   private
+  def edit_project_params
+    params.require(:bug).permit(:title, :description, :image, :typeOf, :status_is, :deadline)
+  end
+
 
   def bug_params
-    params.require(:bug).permit(:title, :description, { screen_shot:[] }, :typeOf, :status_is, :deadline, :user_id,
+    params.require(:bug).permit(:title, :description, :image, :typeOf, :status_is, :deadline, :user_id,
                                 :project_id)
   end
 

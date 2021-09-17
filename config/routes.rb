@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get 'developer/bugs', to: 'bugs#developer_bugs', as: :developer
   get 'projects/:id/developers', to: 'users#developer_index', as: :allDeveloper
   get 'developer/projects', to: 'projects_developer#developer_project', as: :developerProject
+  get 'projects/:id/bugs/:id', to: 'bugs#details', as: :bugs
+  get 'pro/bug', to: 'bugs#edit_developer', as: :edit_bug
+  put 'update/bug', to: 'bugs#update_developer', as: :updateBug
 
   root to: 'home#index'
 end
