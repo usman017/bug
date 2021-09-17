@@ -21,6 +21,7 @@ class BugsController < ApplicationController
   end
 
   def edit
+
     @bug = Bug.find(params[:id])
   end
 
@@ -42,7 +43,7 @@ class BugsController < ApplicationController
     @bug = Bug.new(parameters)
     respond_to do |format|
       if @bug.save
-        format.html { redirect_to new_project_bug_path, flash: { success: "bugs added" } }
+        format.html { redirect_to new_project_bug_path, flash: { success: "bug added" } }
       else
         format.html { render :new }
       end
@@ -63,6 +64,7 @@ class BugsController < ApplicationController
     @bug = Bug.find(bug_id)
     developer_id = params['developer_id'].to_i
     @bug.update({ developer_id: developer_id })
+    redirect_to projects_path, flash: { success: 'Bug assign to developer' }
   end
 
   private
@@ -70,7 +72,6 @@ class BugsController < ApplicationController
   def edit_project_params
     params.require(:bug).permit(:title, :description, :image, :typeOf, :status_is, :deadline)
   end
-
 
   def bug_params
     params.require(:bug).permit(:title, :description, :image, :typeOf, :status_is, :deadline, :user_id,

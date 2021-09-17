@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<h2 style="padding-left: 500px">  Generate Bug</h2>
+<h2 style="padding-left: 500px">  Edit Bug</h2>
 
 
 <div class="container"  id="container">
@@ -28,7 +28,6 @@
 
 
     <%= f.hidden_field :project %>
-
     Screen Shot: <%=f.file_field :image, class:"form-control" %>
 
     <div class="field" data-target="bug">
@@ -48,8 +47,6 @@
           $('[data-target=bug]').toggle(value === 'bug');
           $('[data-target=bug] select').attr('disable', value !== 'bug');
 
-          $('[data-target=feature]').toggle(value === 'feature');
-          $('[data-target=feature] select').attr('disable', value !== 'feature');
       }
 
       // execute every time the type of task is changed

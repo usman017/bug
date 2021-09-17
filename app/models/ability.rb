@@ -13,7 +13,7 @@ class Ability
       can :manage, Bug
       cannot :manage, ProjectsDeveloper
     when 'Developer'
-      can :read, Bug
+      can [:read, :edit], Bug
       can :manage, ProjectsDeveloper
     else
       # type code here

@@ -51,9 +51,9 @@ class ProjectsDeveloperController < ApplicationController
     @project = ProjectsDeveloper.new({ project_id: project_id, developer_id: developer_id })
     respond_to do |format|
       if @project.save
-        format.html {redirect_to projects_path, flash:{ success: 'Project assign successfully' }}
+        format.html { redirect_to projects_path, flash: { success: 'Project assign successfully' } }
       else
-        format.html {redirect_to allBugs_path}
+        format.html { redirect_to allBugs_path }
       end
     end
   end
